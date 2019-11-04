@@ -159,7 +159,7 @@ public class BusinessCardXmlParser {
 				Node node = childNodes.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) node;
-					if ("name".equals(e.getNodeName())) {
+					if (NAME.equals(e.getNodeName())) {
 						card.setName(e.getAttribute(NAME));
 						card.setLanguage(e.getAttribute(LANGUAGE));
 					}
