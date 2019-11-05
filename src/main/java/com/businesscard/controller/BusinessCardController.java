@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,23 +16,24 @@ import com.businesscard.service.BusinessCardService;
 import com.businesscard.util.JSONModel;
 
 @RestController
+@RequestMapping("/business-card")
 public class BusinessCardController {
 	
 	@Autowired
 	private BusinessCardService service;
 	
-	@GetMapping("/business-card/{icd}/{enum}")
+	@GetMapping("/{icd}/{enum}")
 	public JSONModel getById(@PathVariable("icd") String icd, @PathVariable("enum") String enterpriseNumber) throws Exception{
 		String param = icd + ":" + enterpriseNumber;
 		return new JSONModel.Builder<>(service.findById(param)).build();
 	}
 	
-	@GetMapping("/business-card/search/{name}")
+	@GetMapping("/search/{name}")
 	public JSONModel searchByName(@PathVariable("name") String name) throws Exception{
 		return new JSONModel.Builder<>(service.searchName(name)).build();
 	}
 	
-	@GetMapping("/business-card/{name}")
+	@GetMapping("/{name}")
 	public JSONModel getByName(@PathVariable("name") String name) throws Exception{
 		return new JSONModel.Builder<>(service.findByName(name)).build();
 	}
