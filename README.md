@@ -1,8 +1,13 @@
 # businesscard
+
+Tools needed:
+1. Java 1.8+
+2. Maven 3.x
+
 Please follow the following to run the application:
 1. Clone the project
 2. Run command mvn spring-boot:run
-3. Use tools like soapui, postman or browser query
+3. Use tools like soapui, postman or browser to query
 
 # urls
 1. To query by id use this: http://localhost:8080/{icd}/{enterpriseNumber}
