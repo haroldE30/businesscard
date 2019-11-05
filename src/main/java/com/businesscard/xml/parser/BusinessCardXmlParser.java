@@ -31,10 +31,13 @@ import com.businesscard.model.BusinessCard;
 
 @Component
 public class BusinessCardXmlParser {
+
 	private static final Logger log = LoggerFactory.getLogger(BusinessCardXmlParser.class);
 
 	private static final String SEARCH_FOR = "The search for ";
 	private static final String NOT_FOUND = " not found.";
+	private static final String COUNTRYCODE = "countrycode";
+	private static final String PARTICIPANT = "participant";
 	private static final String NAME = "name";
 	private static final String VALUE = "value";
 	private static final String LANGUAGE = "language";
@@ -152,7 +155,7 @@ public class BusinessCardXmlParser {
 	private void extractElements(Element element, BusinessCard card) {
 		if (element.hasChildNodes()) {
 			//entity
-			card.setCountryCode(element.getAttribute("countrycode"));
+			card.setCountryCode(element.getAttribute(COUNTRYCODE));
 
 			NodeList childNodes = element.getChildNodes();
 			for (int i = 0; i < childNodes.getLength(); i++) {
@@ -165,7 +168,7 @@ public class BusinessCardXmlParser {
 					}
 				}
 			}
-		}else if("participant".equals(element.getNodeName())) {
+		}else if(PARTICIPANT.equals(element.getNodeName())) {
 			//participant
 			String[] values = element.getAttribute(VALUE).split(REGEX);
 			card.setIcd(values[0]);
